@@ -21,7 +21,20 @@ var DinnerModel = function() {
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		
+		var dish = null;
+		var i = menu.length-1;
+
+		// We iterate over the menu to find if a dish of the same type exist
+		while(i >= 0 && dish === null){
+
+			if (menu[i].type === type) {
+				dish = menu[i];
+			};
+
+			i--;
+		}
+
+		return dish;
 	}
 
 	//Returns all the dishes on the menu.
@@ -81,14 +94,13 @@ var DinnerModel = function() {
 		// If a dish exist with the id in argument
 		if (dish !== null) {
 
-			// We iterate over the menu to find if a dish of the same type exist
-			while(i >= 0 && !foundDish){
-				//if a dish of the same type as the one that we want to add exist in the menu we delete it
-				if (menu[i].type === dish.type) {
-					menu.splice(i,1);
-					foundDish = true;
-				};
-			}
+			// Look if a dish of this type exist in the menu
+			var prevDish = this.getSelectedDish(dish.type);
+			
+			// if it does remove it
+			if ( prevDish !== null) {
+				this.removeDishFromMenu(prevDish.id);
+			};
 
 			// We add the dish to the menu
 			this.menu.push(dish);
@@ -99,11 +111,15 @@ var DinnerModel = function() {
 	this.removeDishFromMenu = function(id) {
 		var foundDish = false;
 		var i = menu.length-1;
+
 		while(i >= 0 && !foundDish){
+
 			if (menu[i].id === id) {
 				menu.splice(i,1);
 				foundDish = true;
 			};
+
+			i--;
 		}
 
 		return foundDish;
