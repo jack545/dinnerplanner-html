@@ -11,6 +11,9 @@ var ExampleView = function (container, model) {
 	//Number of Guests
 	this.numberOfGuests.html(model.getNumberOfGuests());
 
+
+	// CONTROLER STUFF FORGETABOUTIT
+	/*
 	this.plusButton.click({nbGuests:this.numberOfGuests}, increaseGuests);
 	this.minusButton.click({nbGuests:this.numberOfGuests}, decreaseGuests);
 
@@ -22,9 +25,26 @@ var ExampleView = function (container, model) {
 	function decreaseGuests(event){
 		model.setNumberOfGuests(model.getNumberOfGuests() - 1);
 		event.data.nbGuests.html(model.getNumberOfGuests());
+	}*/
+
+	function loadMainDishes(){
+		dishContainer = container.find("#dishContainer");
+		mainDishes = model.getAllDishes("main dish");
+
+		var dishHtml = "";
+
+		for(dish in mainDishes){
+			dishHtml = '<div class="dish"><div class="dish-img">';
+			dishHtml += '<img src="'+dish.image+'" alt="'+dish.name+'">';
+			dishHtml += '<p>'+dis.name+'</p></div>':
+			dishHtml += '<div class="instructions"><p>'+dish.description+'</p></div></div>';
+
+			dishContainer.append(dishHtml);
+		}
+
 	}
 	
 
-	
+
 }
  
