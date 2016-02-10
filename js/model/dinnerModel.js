@@ -10,13 +10,13 @@ var DinnerModel = function() {
 	this.setNumberOfGuests = function(num) {
 		// If num is an integer
 		if (num ==== parseInt(num,10)) {
-			this.nbGuest = num;
+			nbGuest = num;
 		};
 	}
 
 	// should return 
 	this.getNumberOfGuests = function() {
-		return this.nbGuest;
+		return nbGuest;
 	}
 
 	//Returns the dish that is on the menu for selected type 
@@ -39,15 +39,15 @@ var DinnerModel = function() {
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		var allDishes = [];
+		var fullMenu = [];
 
 		//Iterate over the menu
-		for (dishId in this.menu){
+		for (dishId in menu){
 			//Get the details from the id and Add every dish to the array
-			allDishes.push(getDish(dishId));
+			fullMenu.push(getDish(dishId));
 		}
 
-		return allDishes;
+		return fullMenu;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
@@ -56,7 +56,7 @@ var DinnerModel = function() {
 		var currentDish = null;
 
 		//Iterate over the menu
-		for (dishId in this.menu){
+		for (dishId in menu){
 			currentDish = getDish(dishId);
 
 			// For each dish in the menu iterate over the ingredients
@@ -72,7 +72,7 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function() {
 
 		//get an array with all of the ingredients in the menu
-		var allIngredients = this.getAllIngredients();
+		var allIngredients = getAllIngredients();
 		var totalPrice = 0;
 
 		// for each ingredient add the individual price multiply by the quantity to the total price
@@ -95,15 +95,15 @@ var DinnerModel = function() {
 		if (dish !== null) {
 
 			// Look if a dish of this type exist in the menu
-			var prevDish = this.getSelectedDish(dish.type);
+			var prevDish = getSelectedDish(dish.type);
 			
 			// if it does remove it
 			if ( prevDish !== null) {
-				this.removeDishFromMenu(prevDish.id);
+				removeDishFromMenu(prevDish.id);
 			};
 
 			// We add the dish to the menu
-			this.menu.push(dish);
+			menu.push(dish);
 		};
 	}
 
