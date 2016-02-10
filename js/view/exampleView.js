@@ -37,7 +37,7 @@ var ExampleView = function (container, model) {
 			dishHtml = '<div class="dish"><div class="dish-img">';
 			dishHtml += '<img src="'+dish.image+'" alt="'+dish.name+'">';
 			dishHtml += '<p>'+dis.name+'</p></div>':
-			dishHtml += '<div class="instructions"><p>'+dish.description+'</p></div></div>';
+			dishHtml += '<div class="description"><p>'+dish.description+'</p></div></div>';
 
 			dishContainer.append(dishHtml);
 		}
