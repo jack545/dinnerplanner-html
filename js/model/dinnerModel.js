@@ -10,7 +10,11 @@ var DinnerModel = function() {
 	this.setNumberOfGuests = function(num) {
 		// If num is an integer
 		if (num === parseInt(num,10)) {
-			nbGuest = num;
+			if (num <= 0) {
+				nbGuest = 0;
+			} else {
+				nbGuest = num;
+			}
 		};
 	}
 
